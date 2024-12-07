@@ -6,16 +6,19 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ContadorModule } from './contador/contador.module';
 import { HeroesModule } from './heroes/heroes.module';
+import { DbzModule } from './dbz/dbz.module';
+import { ListComponent } from './dbz/components/list/list.component';
 
 @NgModule({
   declarations: [
-    AppComponent, // Declaras solo el componente raíz aquí
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ContadorModule,
-    HeroesModule, // Importas HeroesModule, que ya contiene ListComponent y HeroComponent
+    HeroesModule, //Importas HeroesModule, que ya contiene ListComponent y HeroComponent
+    DbzModule,
   ],
   providers: [],
   bootstrap: [AppComponent], // Componente inicial de la app
