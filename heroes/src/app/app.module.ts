@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { ContadorModule } from './contador/contador.module';
 import { HeroesModule } from './heroes/heroes.module';
 import { DbzModule } from './dbz/dbz.module';
-import { ListComponent } from './dbz/components/list/list.component';
+
 
 @NgModule({
   declarations: [
