@@ -10,5 +10,12 @@ import { Component } from '@angular/core';
 export class ListComponent {
 
   public heroNames: string[] = ["spiderman","hulk","ironman","thor"]
+  public deleteHero?: string;
+
+  //Eliminar el ultimo heroe del array
+
+  removeLastHeroe():void {
+    this.deleteHero = this.heroNames.pop();
+  }
 
 }
