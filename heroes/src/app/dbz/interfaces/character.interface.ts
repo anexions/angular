@@ -5,3 +5,12 @@ export interface Character {
   name: string;
   power: number;
 }
+
+
+export interface Personaje {
+  name: string,
+  edad: number,
+  direccion: string,
+  poderes: string[]
+}
+
