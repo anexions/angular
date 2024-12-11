@@ -1,1 +1,8 @@
-<p>product-detail works!</p>
+<div *ngIf="product" class="product-detail">
+    <img [src]="product.imageUrl" alt="{{product.name}}">
+    <h2>{{product.name}}</h2>
+    <p>{{product.description}}</p>
+    <strong>{{product.price | currency:'EUR'}}</strong>
+    <button (click)="addToCart(product)">Añadir al carrito</button>
+  </div>
+  

@@ -1,1 +1,36 @@
-<p>cart works!</p>
+<div class="cart">
+    <h2>Tu Carrito</h2>
+    <div *ngIf="cart.length > 0; else emptyCart">
+      <ul>
+        <li *ngFor="let product of cart">
+          {{product.name}} - {{product.price | currency:'EUR'}}
+        </li>
+      </ul>
+      <h3>Total: {{total | currency:'EUR'}}</h3>
+  
+      <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+        <label>
+          Nombre:
+          <input formControlName="name">
+        </label>
+        <div *ngIf="checkoutForm.get('name')?.invalid && checkoutForm.get('name')?.touched">
+          El nombre es requerido.
+        </div>
+  
+        <label>
+          Dirección:
+          <textarea formControlName="address"></textarea>
+        </label>
+        <div *ngIf="checkoutForm.get('address')?.invalid && checkoutForm.get('address')?.touched">
+          La dirección es requerida.
+        </div>
+  
+        <button type="submit" [disabled]="checkoutForm.invalid">Finalizar compra</button>
+      </form>
+    </div>
+  
+    <ng-template #emptyCart>
+      <p>El carrito está vacío</p>
+    </ng-template>
+  </div>
+  

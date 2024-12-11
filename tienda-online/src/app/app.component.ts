@@ -1,12 +1,19 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
+import { routes } from './app.routes'; // Importa el archivo de rutas
+import { HeaderComponent } from './components/header/header.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  standalone: true,
+  imports: [
+    RouterModule, // Configura las rutas aquí
+    HeaderComponent // Importa el header si es standalone
+  ],
+  template: `
+    <app-header></app-header>
+    <router-outlet></router-outlet>
+  `
 })
-export class AppComponent {
-  title = 'tienda-online';
-}
+export class AppComponent {}

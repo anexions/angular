@@ -1,11 +1,43 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CartService } from '../../services/cart.service';
+import { Product } from '../../models/product';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+
+
 
 @Component({
+  imports: [CommonModule,ReactiveFormsModule],
   selector: 'app-cart',
-  imports: [],
   templateUrl: './cart.component.html',
-  styleUrl: './cart.component.scss'
+  standalone: true
 })
-export class CartComponent {
+export class CartComponent implements OnInit {
+  cart: Product[] = [];
+  total: number = 0;
+  checkoutForm: FormGroup;
 
+  constructor(private cartService: CartService, private fb: FormBuilder) {
+    this.checkoutForm = this.fb.group({
+      name: ['', Validators.required],
+      address: ['', Validators.required]
+    });
+  }
+
+  ngOnInit(): void {
+    this.cart = this.cartService.getCart();
+    this.total = this.cartService.getTotal();
+  }
+
+  onSubmit() {
+    if(this.checkoutForm.valid) {
+      console.log('Datos de compra:', this.checkoutForm.value);
+      alert(`Gracias por su compra, ${this.checkoutForm.value.name}!`);
+      this.cartService.clearCart();
+      this.cart = [];
+      this.total = 0;
+      this.checkoutForm.reset();
+    }
+  }
 }
