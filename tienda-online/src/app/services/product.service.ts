@@ -5,7 +5,7 @@ import { Product } from '../models/product'; //El modelo que usará nuestros obj
   providedIn: 'root',
 })
 export class ProductService {
-  private products: Product[] = [
+  private products: Product[] = [   //product es el nombre del array y Product es el modelo que estamos usando.
     //Productos que van dentro de un array que tiene objetos en su interior.
 
     {
@@ -42,6 +42,12 @@ export class ProductService {
   //Funcion para buscar un producto por id
 
   getProductById(id: number): Product | undefined {
-    return this.products.find((p) => p.id === id);  //.find buscará en el array de Product el que corresponda con el id.
+    return this.products.find((p) => p.id === id); //.find buscará en el array de Product el que corresponda con el id.
+  }
+
+  //Nueva funcion para añadir un producto a la lista:
+
+  addProduct(newProduct: Product): void {
+    this.products.push(newProduct);
   }
 }

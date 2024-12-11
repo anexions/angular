@@ -5,13 +5,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
-
-
 @Component({
-  imports: [CommonModule,ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule],
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  standalone: true
+  standalone: true,
 })
 export class CartComponent implements OnInit {
   cart: Product[] = [];
@@ -21,7 +19,7 @@ export class CartComponent implements OnInit {
   constructor(private cartService: CartService, private fb: FormBuilder) {
     this.checkoutForm = this.fb.group({
       name: ['', Validators.required],
-      address: ['', Validators.required]
+      address: ['', Validators.required],
     });
   }
 
@@ -31,7 +29,7 @@ export class CartComponent implements OnInit {
   }
 
   onSubmit() {
-    if(this.checkoutForm.valid) {
+    if (this.checkoutForm.valid) {
       console.log('Datos de compra:', this.checkoutForm.value);
       alert(`Gracias por su compra, ${this.checkoutForm.value.name}!`);
       this.cartService.clearCart();
@@ -39,5 +37,12 @@ export class CartComponent implements OnInit {
       this.total = 0;
       this.checkoutForm.reset();
     }
+  }
+
+  // Método para vaciar el carrito
+  clearCart(): void {
+    this.cartService.clearCart(); // Limpia el carrito en el servicio
+    this.cart = this.cartService.getCart(); // Actualiza la lista local del carrito
+    this.total = this.cartService.getTotal(); // Recalcula el total
   }
 }
